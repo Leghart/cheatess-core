@@ -19,7 +19,7 @@ subprocess = { version = "0.2.9", default-features = false }
 text-colorizer = { version = "1.0.0", default-features = false }
 thiserror = { version = "2.0.16", default-features = false }
 xcap = { version = "0.6.1", default-features = false }
-serde = { version = "1.0.225", features = ["derive"], optional = true }
+serde = { version = "1.*", features = ["derive"], optional = true }
 
 [features]
 serde = ["dep:serde"]
