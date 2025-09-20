@@ -19,6 +19,9 @@ pub enum CheatessError {
     #[error("Detected no move")]
     NoMoveDetected,
 
+    #[error("Detected no board")]
+    NoBoardDetected,
+
     #[error("Invalid amount of moves detected: {0}")]
     InvalidAmountOfMoves(usize),
 

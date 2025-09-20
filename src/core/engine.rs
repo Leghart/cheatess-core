@@ -99,6 +99,7 @@ impl<P: Printer, V: View> Board<P, V> {
     }
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, PartialEq)]
 pub enum Color {
     White,
@@ -162,6 +163,7 @@ pub struct DiffSquare {
     piece_after: char,
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, PartialEq)]
 pub enum MoveType {
     Forward,
@@ -361,13 +363,13 @@ mod tests {
     }
 
     #[rstest]
-    #[case(0,0,"a8".to_string(), Color::White)]
+    #[case(0, 0,"a8".to_string(), Color::White)]
     #[case(0, 7,"h8".to_string(), Color::White)]
     #[case(7, 0,"a1".to_string(), Color::White)]
     #[case(7, 7,"h1".to_string(), Color::White)]
     #[case(4, 4,"e4".to_string(), Color::White)]
     #[case(3, 6,"g5".to_string(), Color::White)]
-    #[case(0,0,"h1".to_string(), Color::Black)]
+    #[case(0, 0,"h1".to_string(), Color::Black)]
     #[case(0, 7,"a1".to_string(), Color::Black)]
     #[case(7, 0,"h8".to_string(), Color::Black)]
     #[case(7, 7,"a8".to_string(), Color::Black)]
