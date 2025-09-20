@@ -100,7 +100,7 @@ impl<P: Printer, V: View> Board<P, V> {
 }
 
 #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Copy, Clone)]
 pub enum Color {
     White,
     Black,
@@ -218,7 +218,7 @@ pub fn detect_move(
         2 => {
             if changed_moves //naive check if moved without any capture -> Forward or Promotion
                 .iter()
-                .all(|d| (d.piece_before == ' ' || d.piece_after == ' '))
+                .all(|d| d.piece_before == ' ' || d.piece_after == ' ')
             {
                 log::trace!("Detected move: Forward or Promotion");
                 let _from = changed_moves

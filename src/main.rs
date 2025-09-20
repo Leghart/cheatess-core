@@ -136,7 +136,7 @@ fn log_stockfish_summary(iter: usize, summary: &core::stockfish::Summary) {
             .chunks(2)
             .enumerate()
             .map(|(i, chunk)| {
-                let m1 = chunk.get(0).cloned().unwrap_or_default();
+                let m1 = chunk.first().cloned().unwrap_or_default();
                 let m2 = chunk.get(1).cloned().unwrap_or_default();
                 format!("{}. {} {}", i + 1, m1, m2)
             })
