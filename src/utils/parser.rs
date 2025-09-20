@@ -30,6 +30,7 @@ enum Subparser {
     Engine(ReClap<EngineArgs, Self>),
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone, Parser)]
 /// Monitor configuration. Allows to specify monitor to use
 pub struct MonitorArgs {
@@ -37,6 +38,7 @@ pub struct MonitorArgs {
     pub name: Option<String>,
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone, Args)]
 /// Stockfish configuration. Allows to setup stockfish engine parameters
 pub struct StockfishArgs {
@@ -65,6 +67,7 @@ pub struct StockfishArgs {
     pub pv: usize,
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone, Parser)]
 /// Image processing configuration. Allows to specify image processing parameters
 pub struct ImgProcArgs {
@@ -89,6 +92,7 @@ pub struct ImgProcArgs {
     pub difference_level: i32,
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug, Clone, Parser)]
 /// Engine configuration. Allows to specify engine parameters
 pub struct EngineArgs {
@@ -97,6 +101,7 @@ pub struct EngineArgs {
     pub pretty: bool,
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Debug, ValueEnum, Default)]
 pub enum Mode {
     #[default]
@@ -114,8 +119,10 @@ impl std::fmt::Display for Mode {
     }
 }
 
+#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
 #[derive(Debug)]
 pub struct CheatessArgs {
+    #[cfg_attr(feature = "serde", serde(skip))]
     pub verbose: Verbosity<InfoLevel>,
     pub mode: Mode,
     pub monitor: MonitorArgs,
